@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Code, Briefcase, Mail, Github, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -64,8 +65,8 @@ const Index = () => {
               With 15 years of expertise in React, HTML, and CSS, I transform complex problems into elegant, user-centric solutions.
             </p>
             <div className="flex gap-4 justify-center pt-8">
-              <Button className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white">View Projects</Button>
-              <Button variant="outline" className="border-[#0EA5E9] text-[#0EA5E9] hover:bg-[#0EA5E9]/10">Contact Me</Button>
+              <Button className="bg-[#33C3F0] hover:bg-[#33C3F0]/90 text-white">View Projects</Button>
+              <Button variant="outline" className="border-[#33C3F0] text-[#33C3F0] hover:bg-[#33C3F0]/10">Contact Me</Button>
             </div>
           </div>
         </div>
@@ -161,7 +162,7 @@ const Index = () => {
                 <div className="text-center">
                   <Button 
                     type="submit" 
-                    className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white w-full md:w-auto"
+                    className="bg-[#33C3F0] hover:bg-[#33C3F0]/90 text-white w-full md:w-auto"
                     disabled={isSubmitting}
                   >
                     <Send className="w-4 h-4 mr-2" />
@@ -183,7 +184,7 @@ const Index = () => {
               Ready to bring your vision to life? Let's discuss how we can work together to create something extraordinary.
             </p>
             <div className="flex justify-center gap-6">
-              <Button size="lg" className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white">
+              <Button size="lg" className="bg-[#33C3F0] hover:bg-[#33C3F0]/90 text-white">
                 <Mail className="mr-2 h-5 w-5" />
                 Email Me
               </Button>
