@@ -1,10 +1,18 @@
-
-import { useEffect, useRef } from "react";
-import { Code, Briefcase, Mail, Github, Linkedin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Code, Briefcase, Mail, Github, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -24,6 +32,22 @@ const Index = () => {
 
     return () => observerRef.current?.disconnect();
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // For now, we'll just show a success message
+      // We'll implement the actual email sending functionality once Supabase is connected
+      toast.success("Thank you for your message! I'll get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -86,6 +110,65 @@ const Index = () => {
                   <p className="text-gray-600">{skill.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-24 bg-secondary/30">
+        <div className="section-container">
+          <div className="animate-on-scroll opacity-0">
+            <h2 className="text-3xl font-bold text-center mb-8">Get in Touch</h2>
+            <div className="max-w-2xl mx-auto">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-4">
+                  <div>
+                    <Input
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={(e) => 
+                        setFormData((prev) => ({ ...prev, name: e.target.value }))
+                      }
+                      required
+                      className="glass-card"
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      type="email"
+                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData((prev) => ({ ...prev, email: e.target.value }))
+                      }
+                      required
+                      className="glass-card"
+                    />
+                  </div>
+                  <div>
+                    <Textarea
+                      placeholder="Your Message"
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData((prev) => ({ ...prev, message: e.target.value }))
+                      }
+                      required
+                      className="glass-card min-h-[150px]"
+                    />
+                  </div>
+                </div>
+                <div className="text-center">
+                  <Button 
+                    type="submit" 
+                    className="glass-card w-full md:w-auto"
+                    disabled={isSubmitting}
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
