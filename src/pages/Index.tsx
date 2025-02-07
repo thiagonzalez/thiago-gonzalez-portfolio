@@ -138,7 +138,7 @@ const Index = () => {
                   <div>
                     <Input
                       type="email"
-                      placeholder="Your Email"
+                      placeholder="Your email"
                       value={formData.email}
                       onChange={(e) =>
                         setFormData((prev) => ({ ...prev, email: e.target.value }))
